@@ -11,6 +11,9 @@ import ARKit
 
 class Scene: SKScene {
 
+    var emojiSpacingScale: Float = 0.5 // spacing between emojis
+    var verticalOffset: Float = 0 // m from the ground
+    var spawnDistance: Float = 5 // m away from the user
     var identifierToEmoji = [UUID: String]()
 
     let rows = 10
@@ -43,8 +46,8 @@ class Scene: SKScene {
         }
         for (index, emoji) in grid.enumerated() {
             addPoint(x: 0.5 * (Float(index % columns) - Float(columns / 2)),
-                     y: 0.5 * (Float(rows / 2) - Float(index / columns)),
-                     z: -5,
+                     y: 0.5 * (Float(rows / 2) - Float(index / columns)) + Float(verticalOffset),
+                     z: Float(-spawnDistance),
                      emoji: emoji)
         }
     }
