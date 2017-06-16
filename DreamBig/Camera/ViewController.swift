@@ -38,8 +38,6 @@ class ViewController: UIViewController {
             sceneView.presentScene(scene)
         }
         scene?.drawingModel = drawingModel
-
-        addControls()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -26,23 +26,24 @@ class Scene: SKScene {
 
     func resetNodes(drawingModel: DrawingModel) {
         self.removeAllChildren()
+        identifierToEmoji = [:]
 
         // Get the maximum size of an emoji
         let maxSize = (drawingModel.points.max { p1, p2 in p1.size < p2.size })?.size ?? 0
         // Add the emoji nodes to the scene
         for drawingPoint in drawingModel.points {
             addEmojiNode(x: 0.02 * Float(drawingPoint.x - drawingModel.canvasSize.width / 2),
-                         y: 0.02 * Float(drawingPoint.y - drawingModel.canvasSize.height / 2),
+                         y: -0.02 * Float(drawingPoint.y - drawingModel.canvasSize.height / 2),
                          // All emojis are at least 1 meter in front, distance exaggerated by a factor of 10
-                         z: 10 * Float(drawingPoint.size - maxSize) - 1,
+                         z: 10 * Float(drawingPoint.size - maxSize) - 2,
                          emoji: drawingPoint.emoji)
         }
     }
 
     // Add an emoji node in the relative coordinate system of the camera
-    //  - x is the metres right from the centre of the screen
-    //  - y is the metres up from the centre of the screen
-    //  - z is the metres coming out towards you from the screen
+    //  - x is the metres RIGHT from the centre of the screen
+    //  - y is the metres UP from the centre of the screen
+    //  - z is the metres coming out TOWARDS YOU from the screen
     //  - emoji is the text on the node
     private func addEmojiNode(x: Float, y: Float, z: Float, emoji: String) {
         guard let sceneView = self.view as? ARSKView else {

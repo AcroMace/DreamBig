@@ -16,9 +16,12 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     @IBOutlet weak var drawingImageView: DrawingImageView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
+        // We need to ensure that the drawingImageView has been expanded
+        // before we can get its size
+        guard drawingModel == nil else { return }
         drawingImageView.delegate = self
         drawingModel = DrawingModel(canvasSize: drawingImageView.frame.size)
     }
