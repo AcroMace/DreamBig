@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import ARKit
 
-class ViewController: UIViewController, ARSKViewDelegate {
+class ViewController: UIViewController {
 
     var scene: Scene?
     var drawingModel: DrawingModel?
@@ -37,7 +37,29 @@ class ViewController: UIViewController, ARSKViewDelegate {
         if scene != nil {
             sceneView.presentScene(scene)
         }
+        scene?.drawingModel = drawingModel
 
+        addControls()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // Create a session configuration
+        let configuration = ARWorldTrackingSessionConfiguration()
+
+        // Run the view's session
+        sceneView.session.run(configuration)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Pause the view's session
+        sceneView.session.pause()
+    }
+
+    private func addControls() {
         // Position and size the textviews
         let textViewSize = CGSize(width: 200, height: 50)
         let bottomOfScreen = view.frame.maxY
@@ -67,29 +89,11 @@ class ViewController: UIViewController, ARSKViewDelegate {
         self.view.addSubview(emojiSpacingScaleTextView)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+}
 
-        // Create a session configuration
-        let configuration = ARWorldTrackingSessionConfiguration()
+// MARK: - ARSKViewDelegate
 
-        // Run the view's session
-        sceneView.session.run(configuration)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // Pause the view's session
-        sceneView.session.pause()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
-    }
-
-    // MARK: - ARSKViewDelegate
+extension ViewController: ARSKViewDelegate {
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         // Create and configure a node for the anchor added to the view's session.
@@ -105,7 +109,10 @@ class ViewController: UIViewController, ARSKViewDelegate {
 
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
-
+        let alertController = UIAlertController(title: "AR session failed", message: error.localizedDescription, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(dismissAction)
+        present(alertController, animated: true)
     }
 
     func sessionWasInterrupted(_ session: ARSession) {
@@ -117,7 +124,10 @@ class ViewController: UIViewController, ARSKViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
 
     }
+
 }
+
+// MARK: - UITextViewDelegate
 
 extension ViewController: UITextViewDelegate {
 
