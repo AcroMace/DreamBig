@@ -29,4 +29,8 @@ class DrawingModel {
     func addPoint(point: DrawingPoint) {
         points.append(point)
     }
+
+    func clearPoints() {
+        points = []
+    }
 }

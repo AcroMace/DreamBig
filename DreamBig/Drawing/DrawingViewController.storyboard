@@ -31,12 +31,21 @@
                                     <action selector="didPressDoneButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="bkY-oE-OBm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whU-uS-5Nx">
+                                <rect key="frame" x="16" y="617" width="36" height="30"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="didPressClearButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="gXx-Az-ZSs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Eki-xH-ZeR" secondAttribute="trailing" id="O8C-Lw-1oK"/>
+                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="whU-uS-5Nx" secondAttribute="bottom" constant="20" id="YpQ-pg-kPd"/>
                             <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="Eki-xH-ZeR" secondAttribute="bottom" id="a6Q-YS-Tlp"/>
                             <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="CSP-ur-6da" secondAttribute="bottom" constant="20" id="gAh-dE-hqV"/>
+                            <constraint firstItem="whU-uS-5Nx" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leadingMargin" id="kSi-Yk-02B"/>
                             <constraint firstItem="Eki-xH-ZeR" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="lcE-Tf-w3I"/>
                             <constraint firstItem="Eki-xH-ZeR" firstAttribute="top" secondItem="CtY-n0-h78" secondAttribute="bottom" id="pnb-d9-Yzw"/>
                             <constraint firstItem="CSP-ur-6da" firstAttribute="trailing" secondItem="51M-VF-fUf" secondAttribute="trailingMargin" id="wOE-uY-Lmw"/>

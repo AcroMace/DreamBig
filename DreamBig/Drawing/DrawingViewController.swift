@@ -43,6 +43,15 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         navigationController?.pushViewController(mainViewController, animated: true)
     }
 
+    @IBAction func didPressClearButton(_ sender: Any) {
+        drawingModel?.clearPoints()
+        for subview in view.subviews {
+            if let label = subview as? UILabel {
+                label.removeFromSuperview()
+            }
+        }
+    }
+
     // MARK: - Private methods
 
     private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint {
