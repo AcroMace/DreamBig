@@ -8,14 +8,27 @@
 
 import UIKit
 
+protocol DrawingImageViewDelegate: class {
+    func drewEmoji(at point: CGPoint, with size: CGFloat)
+}
+
 class DrawingImageView: UIImageView {
+    weak var delegate: DrawingImageViewDelegate?
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        respondToTouches(touches)
     }
-    */
 
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        respondToTouches(touches)
+    }
+
+    private func respondToTouches(_ touches: Set<UITouch>) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let size = touch.force > 0 ? touch.force : 1
+        delegate?.drewEmoji(at: location, with: size)
+    }
 }

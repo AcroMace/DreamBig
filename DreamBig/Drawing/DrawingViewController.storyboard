@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eki-xH-ZeR">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eki-xH-ZeR" customClass="DrawingImageView" customModule="DreamBig" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSP-ur-6da">
@@ -44,7 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="o5G-OW-BOy"/>
                     <connections>
-                        <outlet property="drawingImageView" destination="Eki-xH-ZeR" id="gUe-im-O6a"/>
+                        <outlet property="drawingImageView" destination="Eki-xH-ZeR" id="2vq-EQ-TT5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wv3-n5-l2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

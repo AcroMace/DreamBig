@@ -13,6 +13,7 @@ import ARKit
 class ViewController: UIViewController, ARSKViewDelegate {
 
     var scene: Scene?
+    var drawingModel: DrawingModel?
     var emojiSize: CGFloat = 200
     @IBOutlet var sceneView: ARSKView!
 
