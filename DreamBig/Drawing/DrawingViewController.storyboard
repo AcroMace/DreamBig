@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gGf-ft-HMm">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Drawing View Controller-->
+        <scene sceneID="p5r-ix-mBb">
+            <objects>
+                <viewController id="kKR-Nk-NW1" customClass="DrawingViewController" customModule="DreamBig" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CtY-n0-h78"/>
+                        <viewControllerLayoutGuide type="bottom" id="aYb-hw-zJv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="51M-VF-fUf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eki-xH-ZeR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSP-ur-6da">
+                                <rect key="frame" x="322" y="617" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="didPressDoneButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="bkY-oE-OBm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Eki-xH-ZeR" secondAttribute="trailing" id="O8C-Lw-1oK"/>
+                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="Eki-xH-ZeR" secondAttribute="bottom" id="a6Q-YS-Tlp"/>
+                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="CSP-ur-6da" secondAttribute="bottom" constant="20" id="gAh-dE-hqV"/>
+                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="lcE-Tf-w3I"/>
+                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="top" secondItem="CtY-n0-h78" secondAttribute="bottom" id="pnb-d9-Yzw"/>
+                            <constraint firstItem="CSP-ur-6da" firstAttribute="trailing" secondItem="51M-VF-fUf" secondAttribute="trailingMargin" id="wOE-uY-Lmw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="o5G-OW-BOy"/>
+                    <connections>
+                        <outlet property="drawingImageView" destination="Eki-xH-ZeR" id="gUe-im-O6a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wv3-n5-l2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="148" y="-143.47826086956522"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="u95-RT-1R7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gGf-ft-HMm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iCh-zY-qfo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kKR-Nk-NW1" kind="relationship" relationship="rootViewController" id="usD-iA-Oxq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgD-cV-HVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-590" y="-143"/>
+        </scene>
+    </scenes>
+</document>
