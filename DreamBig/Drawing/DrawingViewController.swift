@@ -13,8 +13,17 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     let emojiBaseSize: CGFloat = 12 // Base font size for the emoji
     var drawingModel: DrawingModel? // Model passed to the AR view controller after drawing
     var currentEmoji = "💩" // The emoji we're using to draw - will be able to change later
+    let availableEmojis = ["💩", "👽", "👾", "🤖", "🎃", "😺"]
 
     @IBOutlet weak var drawingImageView: DrawingImageView!
+    @IBOutlet weak var emojiTableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        emojiTableView.delegate = self
+        emojiTableView.dataSource = self
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -32,6 +41,10 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
             self.drawingModel?.addPoint(point: point)
             self.view.addSubview(self.convertDrawingPointToLabel(drawingPoint: point))
         }
+    }
+
+    @IBAction func didPressAddEmojiButton(_ sender: Any) {
+        print("Add emoji")
     }
 
     @IBAction func didPressDoneButton(_ sender: Any) {
@@ -75,6 +88,35 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         emoji.frame.origin = CGPoint(x: x, y: y)
 
         return emoji
+    }
+
+}
+
+extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return availableEmojis.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = emojiTableView.dequeueReusableCell(withIdentifier: DrawingEmojiTableViewCell.reuseIdentifier) as? DrawingEmojiTableViewCell else {
+            print("ERROR: Failed to dequeue DrawingEmojiTableViewCell")
+            return DrawingEmojiTableViewCell()
+        }
+
+        guard indexPath.row < availableEmojis.count else {
+            print("ERROR: Tried to dequeue out of range emoji")
+            return DrawingEmojiTableViewCell()
+        }
+
+        cell.config(emoji: availableEmojis[indexPath.row])
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < availableEmojis.count else { return }
+
+        currentEmoji = availableEmojis[indexPath.row]
     }
 
 }
