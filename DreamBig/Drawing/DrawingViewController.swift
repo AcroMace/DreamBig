@@ -11,9 +11,8 @@ import UIKit
 class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     let emojiBaseSize: CGFloat = 12 // Base font size for the emoji
+    let emojiPalette = EmojiPalette()
     var drawingModel: DrawingModel? // Model passed to the AR view controller after drawing
-    var currentEmojiIndex = 0 // The emoji index into availableEmojis we're using to draw
-    var availableEmojis = ["💩", "👽", "🙉"] // List of emojis in the palette
 
     @IBOutlet weak var drawingImageView: DrawingImageView!
     @IBOutlet weak var emojiTableView: UITableView!
@@ -48,7 +47,7 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         let okay = UIAlertAction(title: "OK", style: .default) { _ in
             guard let alertTextField = alert.textFields?.first else { return }
             guard let emoji = alertTextField.text else { return }
-            self.availableEmojis.append(emoji)
+            self.emojiPalette.addEmojiToPalette(emoji: emoji)
             self.emojiTableView.reloadData()
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -85,7 +84,7 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     // MARK: - Private methods
 
     private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint {
-        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: availableEmojis[currentEmojiIndex])
+        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: emojiPalette.getEmoji())
     }
 
     private func convertDrawingPointToLabel(drawingPoint: DrawingPoint) -> UILabel {
@@ -109,7 +108,7 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableEmojis.count
+        return emojiPalette.count()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,19 +117,18 @@ extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
             return DrawingEmojiTableViewCell()
         }
 
-        guard indexPath.row < availableEmojis.count else {
+        guard indexPath.row < emojiPalette.count() else {
             print("ERROR: Tried to dequeue out of range emoji")
             return DrawingEmojiTableViewCell()
         }
 
-        cell.config(emoji: availableEmojis[indexPath.row])
+        cell.config(emoji: emojiPalette.getEmoji(index: indexPath.row))
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < availableEmojis.count else { return }
-
-        currentEmojiIndex = indexPath.row
+        guard indexPath.row < emojiPalette.count() else { return }
+        emojiPalette.selectEmoji(index: indexPath.row)
     }
 
 }
