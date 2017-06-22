@@ -12,8 +12,8 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     let emojiBaseSize: CGFloat = 12 // Base font size for the emoji
     var drawingModel: DrawingModel? // Model passed to the AR view controller after drawing
-    var currentEmoji = "💩" // The emoji we're using to draw - will be able to change later
-    let availableEmojis = ["💩", "👽", "👾", "🤖", "🎃", "😺"]
+    var currentEmojiIndex = 0 // The emoji index into availableEmojis we're using to draw
+    var availableEmojis = ["💩", "👽", "🙉"] // List of emojis in the palette
 
     @IBOutlet weak var drawingImageView: DrawingImageView!
     @IBOutlet weak var emojiTableView: UITableView!
@@ -44,7 +44,21 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     }
 
     @IBAction func didPressAddEmojiButton(_ sender: Any) {
-        print("Add emoji")
+        let alert = UIAlertController(title: "Add emoji", message: nil, preferredStyle: .alert)
+        let okay = UIAlertAction(title: "OK", style: .default) { _ in
+            guard let alertTextField = alert.textFields?.first else { return }
+            guard let emoji = alertTextField.text else { return }
+            self.availableEmojis.append(emoji)
+            self.emojiTableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addTextField { textField in
+            textField.placeholder = "Enter emoji here"
+        }
+        alert.addAction(okay)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 
     @IBAction func didPressDoneButton(_ sender: Any) {
@@ -71,12 +85,12 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     // MARK: - Private methods
 
     private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint {
-        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: currentEmoji)
+        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: availableEmojis[currentEmojiIndex])
     }
 
     private func convertDrawingPointToLabel(drawingPoint: DrawingPoint) -> UILabel {
         let emoji = UILabel(frame: CGRect.zero)
-        emoji.text = currentEmoji
+        emoji.text = drawingPoint.emoji
         emoji.font = UIFont.systemFont(ofSize: emojiBaseSize * drawingPoint.size)
         emoji.sizeToFit()
 
@@ -116,7 +130,7 @@ extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row < availableEmojis.count else { return }
 
-        currentEmoji = availableEmojis[indexPath.row]
+        currentEmojiIndex = indexPath.row
     }
 
 }

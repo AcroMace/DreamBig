@@ -50,7 +50,6 @@ class Scene: SKScene {
         guard let sceneView = self.view as? ARSKView else {
             return
         }
-        print("Adding node: (\(x),\(y),\(z))")
 
         // Create anchor using the camera's current position
         // Important note in case implementation changes later:
