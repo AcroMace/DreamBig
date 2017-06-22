@@ -37,8 +37,8 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     @IBAction func didPressDoneButton(_ sender: Any) {
         // Trying to edit the "Main" storyboard currently crashes Xcode so the name can't be changed
         // Just use a transition and consolidate the two UIViewControllers to a single storyboard when the next beta comes out
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle(for: ViewController.self))
-        guard let mainViewController = mainStoryboard.instantiateInitialViewController() as? ViewController else {
+        let mainStoryboard = UIStoryboard(name: "CameraViewController", bundle: Bundle(for: CameraViewController.self))
+        guard let mainViewController = mainStoryboard.instantiateInitialViewController() as? CameraViewController else {
             print("Could not create the Main view controller")
             return
         }

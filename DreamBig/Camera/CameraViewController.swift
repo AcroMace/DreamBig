@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CameraViewController.swift
 //  DreamBig
 //
 //  Created by Andy Cho on 2017-06-10.
@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import ARKit
 
-class ViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     var scene: Scene?
     var drawingModel: DrawingModel?
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
 
 // MARK: - ARSKViewDelegate
 
-extension ViewController: ARSKViewDelegate {
+extension CameraViewController: ARSKViewDelegate {
 
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         // Create and configure a node for the anchor added to the view's session.
@@ -120,7 +120,7 @@ extension ViewController: ARSKViewDelegate {
 
 // MARK: - UITextViewDelegate
 
-extension ViewController: UITextViewDelegate {
+extension CameraViewController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
