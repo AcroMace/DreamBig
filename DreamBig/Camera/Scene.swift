@@ -60,8 +60,8 @@ class Scene: SKScene {
         if let currentFrame = sceneView.session.currentFrame {
             // Rotate the emoji - directions based on assuming we are in landscape right mode
             // If this was portrait mode, it would be (x, 1, 0, 0), (y, 0, 1, 0) as expected
-            let horizontalRotation = SCNMatrix4ToMat4(SCNMatrix4MakeRotation(x, 0, -1, 0))
-            let verticalRotation = SCNMatrix4ToMat4(SCNMatrix4MakeRotation(y, 1, 0, 0))
+            let horizontalRotation = matrix_float4x4(SCNMatrix4MakeRotation(x, 0, -1, 0))
+            let verticalRotation = matrix_float4x4(SCNMatrix4MakeRotation(y, 1, 0, 0))
             let rotation = simd_mul(horizontalRotation, verticalRotation)
 
             // Translate the emoji

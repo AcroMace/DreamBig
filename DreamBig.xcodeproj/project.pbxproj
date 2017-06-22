@@ -65,7 +65,6 @@
 				63DCCAAE1EEC9A73001CAF13 /* Scene.sks */,
 				63DCCAB01EEC9A73001CAF13 /* Scene.swift */,
 				63DCCAB21EEC9A73001CAF13 /* ViewController.swift */,
-				639EE9F31EF4307F0066190E /* Main.storyboard */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -89,6 +88,7 @@
 		63DCCAAB1EEC9A73001CAF13 /* DreamBig */ = {
 			isa = PBXGroup;
 			children = (
+				639EE9F31EF4307F0066190E /* Main.storyboard */,
 				63745E071EF42EA100D281A7 /* Camera */,
 				63745E061EF42E8A00D281A7 /* Drawing */,
 				63DCCAB71EEC9A73001CAF13 /* Assets.xcassets */,
