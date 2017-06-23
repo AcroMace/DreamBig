@@ -15,8 +15,8 @@ class Scene: SKScene {
     var spawnDistance: Float = 1 // m away from the user
     private(set) var identifierToEmoji = [UUID: String]()
 
-    // On tap, we reset the position of all nodes
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // On tap, reset the position of all nodes
+    func resetNodes() {
         if let `drawingModel` = drawingModel {
             resetNodes(drawingModel: drawingModel)
         }

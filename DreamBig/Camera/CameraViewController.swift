@@ -17,6 +17,7 @@ class CameraViewController: UIViewController {
     var emojiSize: CGFloat = 32
     @IBOutlet var sceneView: ARSKView!
 
+    var placeButton: UIBarButtonItem?
     var emojiSizeTextView = UITextView()
     var spawnDistanceTextView = UITextView()
     var emojiSpacingScaleTextView = UITextView()
@@ -37,6 +38,11 @@ class CameraViewController: UIViewController {
             sceneView.presentScene(scene)
         }
         scene?.drawingModel = drawingModel
+
+        // Add the "Place" button
+        let placeButton = UIBarButtonItem(title: "Place", style: .done, target: self, action: #selector(placeEmojis))
+        self.placeButton = placeButton
+        navigationItem.setRightBarButton(placeButton, animated: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +60,10 @@ class CameraViewController: UIViewController {
 
         // Pause the view's session
         sceneView.session.pause()
+    }
+
+    @objc private func placeEmojis() {
+        scene?.resetNodes()
     }
 
     private func addControls() {
