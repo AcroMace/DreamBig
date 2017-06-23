@@ -127,8 +127,19 @@ extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard indexPath.row < emojiPalette.count() else { return }
         emojiPalette.selectEmoji(index: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            emojiPalette.deleteEmoji(index: indexPath.row)
+            tableView.reloadData()
+        }
     }
 
 }

@@ -38,21 +38,27 @@ class EmojiPalette {
     func selectEmoji(index: Int) {
         let palette = getPalette()
         guard 0 ..< palette.count ~= index else {
-            print("A negative number is not a valid index")
+            print("ERROR: Could not select emoji at index \(index) of \(palette.count) emojis")
             return
         }
         currentEmojiIndex = index
         print("Selected emoji: \(palette[index])")
     }
 
-    // Get the stored emoji palette
-    func getPalette() -> [String] {
-        if let storedPalette = UserDefaults.standard.stringArray(forKey: EmojiPalette.paletteKey) {
-            return storedPalette
+    // Delete the emoji at the index
+    func deleteEmoji(index: Int) {
+        var palette = getPalette()
+        guard 0 ..< palette.count ~= index else {
+            print("ERROR: Could not delete emoji at index \(index) of \(palette.count) emojis")
+            return
         }
-
-        updatePalette(emojis: EmojiPalette.defaultPalette)
-        return EmojiPalette.defaultPalette
+        let deletedEmoji = palette.remove(at: index)
+        print("Deleted emoji: \(deletedEmoji)")
+        if index == currentEmojiIndex {
+            print("Resetting emoji index since the selected emoji was deleted")
+            currentEmojiIndex = 0
+        }
+        updatePalette(emojis: palette)
     }
 
     // Count the number of emojis in the palette
@@ -65,6 +71,18 @@ class EmojiPalette {
         var palette = getPalette()
         palette.append(emoji)
         updatePalette(emojis: palette)
+    }
+
+    // MARK: - Private methods
+
+    // Get the stored emoji palette
+    private func getPalette() -> [String] {
+        if let storedPalette = UserDefaults.standard.stringArray(forKey: EmojiPalette.paletteKey) {
+            return storedPalette
+        }
+
+        updatePalette(emojis: EmojiPalette.defaultPalette)
+        return EmojiPalette.defaultPalette
     }
 
     // Completely replace the emoji palette

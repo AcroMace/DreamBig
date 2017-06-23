@@ -58,8 +58,8 @@
 				63DCA26C1EF448CB00443BFF /* DrawingModel.swift */,
 				63EAC49C1EF05DFC0084129B /* DrawingViewController.swift */,
 				633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */,
-				63FF3F7E1EF42B0A00B77040 /* DrawingViewController.storyboard */,
 				633B63681EFC87F5006223B4 /* EmojiPalette.swift */,
+				63FF3F7E1EF42B0A00B77040 /* DrawingViewController.storyboard */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
