@@ -122,13 +122,13 @@ extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
             return DrawingEmojiTableViewCell()
         }
 
-        cell.config(emoji: emojiPalette.getEmoji(index: indexPath.row))
+        cell.config(emoji: emojiPalette.getEmoji(index: indexPath.row), isSelected: emojiPalette.isSelectedEmoji(index: indexPath.row))
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         emojiPalette.selectEmoji(index: indexPath.row)
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadData()
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -45,6 +45,11 @@ class EmojiPalette {
         print("Selected emoji: \(palette[index])")
     }
 
+    // Check if the index given is the selected emoji
+    func isSelectedEmoji(index: Int) -> Bool {
+        return currentEmojiIndex == index
+    }
+
     // Delete the emoji at the index
     func deleteEmoji(index: Int) {
         var palette = getPalette()
