@@ -11,18 +11,14 @@ import UIKit
 class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     let emojiBaseSize: CGFloat = 12 // Base font size for the emoji
-    let emojiPalette = EmojiPalette()
     var drawingModel: DrawingModel? // Model passed to the AR view controller after drawing
 
+    // Emoji palette view controllers
+    var emojiPaletteContainer: UINavigationController?
+    var emojiPaletteViewController: EmojiPaletteTableViewController?
+
     @IBOutlet weak var drawingImageView: DrawingImageView!
-    @IBOutlet weak var emojiTableView: UITableView!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        emojiTableView.delegate = self
-        emojiTableView.dataSource = self
-    }
+    @IBOutlet weak var emojiButton: UIBarButtonItem!
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -42,22 +38,12 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         }
     }
 
-    @IBAction func didPressAddEmojiButton(_ sender: Any) {
-        let alert = UIAlertController(title: "Add emoji", message: nil, preferredStyle: .alert)
-        let okay = UIAlertAction(title: "OK", style: .default) { _ in
-            guard let alertTextField = alert.textFields?.first else { return }
-            guard let emoji = alertTextField.text else { return }
-            self.emojiPalette.addEmojiToPalette(emoji: emoji)
-            self.emojiTableView.reloadData()
+    @IBAction func didPressEmojisButton(_ sender: Any) {
+        guard let emojiPaletteContainer = getEmojiPaletteContainer() else {
+            return
         }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-        alert.addTextField { textField in
-            textField.placeholder = "Enter emoji here"
-        }
-        alert.addAction(okay)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
+        present(emojiPaletteContainer, animated: true, completion: nil)
+        emojiPaletteContainer.popoverPresentationController?.barButtonItem = emojiButton
     }
 
     @IBAction func didPressDoneButton(_ sender: Any) {
@@ -84,7 +70,7 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     // MARK: - Private methods
 
     private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint {
-        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: emojiPalette.getEmoji())
+        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: getEmojiPaletteViewController()?.emojiPalette.getEmoji() ?? ":(")
     }
 
     private func convertDrawingPointToLabel(drawingPoint: DrawingPoint) -> UILabel {
@@ -103,43 +89,26 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         return emoji
     }
 
-}
-
-extension DrawingViewController: UITableViewDelegate, UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return emojiPalette.count()
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = emojiTableView.dequeueReusableCell(withIdentifier: DrawingEmojiTableViewCell.reuseIdentifier) as? DrawingEmojiTableViewCell else {
-            print("ERROR: Failed to dequeue DrawingEmojiTableViewCell")
-            return DrawingEmojiTableViewCell()
+    private func getEmojiPaletteContainer() -> UINavigationController? {
+        if emojiPaletteContainer != nil {
+            return emojiPaletteContainer
         }
 
-        guard indexPath.row < emojiPalette.count() else {
-            print("ERROR: Tried to dequeue out of range emoji")
-            return DrawingEmojiTableViewCell()
+        let navigationControllerStoryboard = UIStoryboard(
+            name: EmojiPaletteTableViewController.storyboard,
+            bundle: Bundle(for: EmojiPaletteTableViewController.self))
+        emojiPaletteContainer = navigationControllerStoryboard.instantiateInitialViewController() as? UINavigationController
+        emojiPaletteContainer?.modalPresentationStyle = .popover
+        return emojiPaletteContainer
+    }
+
+    private func getEmojiPaletteViewController() -> EmojiPaletteTableViewController? {
+        if emojiPaletteViewController != nil {
+            return emojiPaletteViewController
         }
 
-        cell.config(emoji: emojiPalette.getEmoji(index: indexPath.row), isSelected: emojiPalette.isSelectedEmoji(index: indexPath.row))
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        emojiPalette.selectEmoji(index: indexPath.row)
-        tableView.reloadData()
-    }
-
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            emojiPalette.deleteEmoji(index: indexPath.row)
-            tableView.reloadData()
-        }
+        emojiPaletteViewController = getEmojiPaletteContainer()?.topViewController as? EmojiPaletteTableViewController
+        return emojiPaletteViewController
     }
 
 }

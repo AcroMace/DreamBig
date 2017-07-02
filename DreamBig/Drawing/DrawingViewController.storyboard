@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gGf-ft-HMm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gGf-ft-HMm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,10 +14,6 @@
         <scene sceneID="p5r-ix-mBb">
             <objects>
                 <viewController id="kKR-Nk-NW1" customClass="DrawingViewController" customModule="DreamBig" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CtY-n0-h78"/>
-                        <viewControllerLayoutGuide type="bottom" id="aYb-hw-zJv"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="51M-VF-fUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,80 +29,36 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whU-uS-5Nx">
-                                <rect key="frame" x="0.0" y="617" width="128" height="30"/>
+                                <rect key="frame" x="16" y="617" width="36" height="30"/>
                                 <state key="normal" title="Clear"/>
                                 <connections>
                                     <action selector="didPressClearButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="gXx-Az-ZSs"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-Px-dbc">
-                                <rect key="frame" x="0.0" y="110" width="128" height="499"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="V6y-Ib-FT4"/>
-                                </constraints>
-                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DrawingEmojiTableViewCell" id="CRA-2H-xhQ" customClass="DrawingEmojiTableViewCell" customModule="DreamBig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="128" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CRA-2H-xhQ" id="hQf-7m-uUS">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👽" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYd-nm-g9h">
-                                                    <rect key="frame" x="10" y="10" width="108" height="23.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hYd-nm-g9h" secondAttribute="trailing" constant="2" id="8NO-Hq-iRx"/>
-                                                <constraint firstItem="hYd-nm-g9h" firstAttribute="leading" secondItem="hQf-7m-uUS" secondAttribute="leadingMargin" constant="2" id="FgX-gq-3GZ"/>
-                                                <constraint firstItem="hYd-nm-g9h" firstAttribute="top" secondItem="hQf-7m-uUS" secondAttribute="topMargin" constant="2" id="VvQ-cy-5WF"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="hYd-nm-g9h" secondAttribute="bottom" constant="2" id="c1v-k0-9Ea"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <connections>
-                                            <outlet property="emojiLabel" destination="hYd-nm-g9h" id="w1g-aD-lYa"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGu-QI-8wc">
-                                <rect key="frame" x="0.0" y="72" width="128" height="30"/>
-                                <state key="normal" title="Add emoji"/>
-                                <connections>
-                                    <action selector="didPressAddEmojiButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="EPD-DG-trk"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="whU-uS-5Nx" firstAttribute="top" secondItem="Hcs-Px-dbc" secondAttribute="bottom" constant="8" id="2dK-mw-Jt9"/>
-                            <constraint firstItem="eGu-QI-8wc" firstAttribute="top" secondItem="CtY-n0-h78" secondAttribute="bottom" constant="8" id="6o8-lt-Kq9"/>
-                            <constraint firstItem="eGu-QI-8wc" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="8PN-LP-lyY"/>
-                            <constraint firstItem="Hcs-Px-dbc" firstAttribute="top" secondItem="eGu-QI-8wc" secondAttribute="bottom" constant="8" id="I1d-rj-KQm"/>
-                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="LhJ-UO-MYA"/>
-                            <constraint firstAttribute="trailing" secondItem="Eki-xH-ZeR" secondAttribute="trailing" id="O8C-Lw-1oK"/>
-                            <constraint firstItem="whU-uS-5Nx" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="QFS-CM-jT6"/>
-                            <constraint firstItem="eGu-QI-8wc" firstAttribute="trailing" secondItem="Hcs-Px-dbc" secondAttribute="trailing" id="UF6-Ts-7Nh"/>
-                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="whU-uS-5Nx" secondAttribute="bottom" constant="20" id="YpQ-pg-kPd"/>
-                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="Eki-xH-ZeR" secondAttribute="bottom" id="a6Q-YS-Tlp"/>
-                            <constraint firstItem="aYb-hw-zJv" firstAttribute="top" secondItem="CSP-ur-6da" secondAttribute="bottom" constant="20" id="gAh-dE-hqV"/>
-                            <constraint firstItem="whU-uS-5Nx" firstAttribute="trailing" secondItem="Hcs-Px-dbc" secondAttribute="trailing" id="nGY-25-b2N"/>
-                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="top" secondItem="CtY-n0-h78" secondAttribute="bottom" id="pnb-d9-Yzw"/>
+                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="leading" secondItem="Pdd-Ko-anx" secondAttribute="leading" id="LhJ-UO-MYA"/>
+                            <constraint firstItem="Pdd-Ko-anx" firstAttribute="trailing" secondItem="Eki-xH-ZeR" secondAttribute="trailing" id="O8C-Lw-1oK"/>
+                            <constraint firstItem="whU-uS-5Nx" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leadingMargin" id="QFS-CM-jT6"/>
+                            <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="whU-uS-5Nx" secondAttribute="bottom" constant="20" id="YpQ-pg-kPd"/>
+                            <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="Eki-xH-ZeR" secondAttribute="bottom" id="a6Q-YS-Tlp"/>
+                            <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="CSP-ur-6da" secondAttribute="bottom" constant="20" id="gAh-dE-hqV"/>
+                            <constraint firstItem="Eki-xH-ZeR" firstAttribute="top" secondItem="Pdd-Ko-anx" secondAttribute="top" id="pnb-d9-Yzw"/>
                             <constraint firstItem="CSP-ur-6da" firstAttribute="trailing" secondItem="51M-VF-fUf" secondAttribute="trailingMargin" id="wOE-uY-Lmw"/>
-                            <constraint firstItem="whU-uS-5Nx" firstAttribute="top" secondItem="Hcs-Px-dbc" secondAttribute="bottom" constant="8" id="wQ2-qU-nwS"/>
-                            <constraint firstItem="Hcs-Px-dbc" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leading" id="yc7-Rc-0Ko"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pdd-Ko-anx"/>
                     </view>
-                    <navigationItem key="navigationItem" id="o5G-OW-BOy"/>
+                    <navigationItem key="navigationItem" id="o5G-OW-BOy">
+                        <barButtonItem key="leftBarButtonItem" title="Emojis" id="57V-Ol-oDE">
+                            <connections>
+                                <action selector="didPressEmojisButton:" destination="kKR-Nk-NW1" id="bAX-jx-K72"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="drawingImageView" destination="Eki-xH-ZeR" id="2vq-EQ-TT5"/>
-                        <outlet property="emojiTableView" destination="Hcs-Px-dbc" id="dbO-mH-XbC"/>
+                        <outlet property="emojiButton" destination="57V-Ol-oDE" id="vTZ-QN-mpp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wv3-n5-l2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>

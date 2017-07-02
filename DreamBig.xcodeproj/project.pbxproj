@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		630039891F0811BD003E8A9C /* EmojiPaletteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630039881F0811BD003E8A9C /* EmojiPaletteTableViewController.swift */; };
+		6300398C1F081256003E8A9C /* EmojiPaletteTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6300398B1F081256003E8A9C /* EmojiPaletteTableViewController.storyboard */; };
 		633B63671EFC8150006223B4 /* DrawingEmojiTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */; };
 		633B63691EFC87F5006223B4 /* EmojiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B63681EFC87F5006223B4 /* EmojiPalette.swift */; };
 		63745E051EF42E8100D281A7 /* DrawingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63745E041EF42E8100D281A7 /* DrawingImageView.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		630039881F0811BD003E8A9C /* EmojiPaletteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPaletteTableViewController.swift; sourceTree = "<group>"; };
+		6300398B1F081256003E8A9C /* EmojiPaletteTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmojiPaletteTableViewController.storyboard; sourceTree = "<group>"; };
 		633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingEmojiTableViewCell.swift; sourceTree = "<group>"; };
 		633B63681EFC87F5006223B4 /* EmojiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPalette.swift; sourceTree = "<group>"; };
 		63745E041EF42E8100D281A7 /* DrawingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingImageView.swift; sourceTree = "<group>"; };
@@ -51,14 +55,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6300398A1F0811EA003E8A9C /* EmojiPalette */ = {
+			isa = PBXGroup;
+			children = (
+				6300398B1F081256003E8A9C /* EmojiPaletteTableViewController.storyboard */,
+				630039881F0811BD003E8A9C /* EmojiPaletteTableViewController.swift */,
+				633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */,
+				633B63681EFC87F5006223B4 /* EmojiPalette.swift */,
+			);
+			path = EmojiPalette;
+			sourceTree = "<group>";
+		};
 		63745E061EF42E8A00D281A7 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
+				6300398A1F0811EA003E8A9C /* EmojiPalette */,
 				63745E041EF42E8100D281A7 /* DrawingImageView.swift */,
 				63DCA26C1EF448CB00443BFF /* DrawingModel.swift */,
 				63EAC49C1EF05DFC0084129B /* DrawingViewController.swift */,
-				633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */,
-				633B63681EFC87F5006223B4 /* EmojiPalette.swift */,
 				63FF3F7E1EF42B0A00B77040 /* DrawingViewController.storyboard */,
 			);
 			path = Drawing;
@@ -164,6 +178,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				639EE9F41EF430E50066190E /* CameraViewController.storyboard in Resources */,
+				6300398C1F081256003E8A9C /* EmojiPaletteTableViewController.storyboard in Resources */,
 				63DCCAAF1EEC9A73001CAF13 /* Scene.sks in Resources */,
 				63DCCABB1EEC9A73001CAF13 /* LaunchScreen.storyboard in Resources */,
 				63DCCAB81EEC9A73001CAF13 /* Assets.xcassets in Resources */,
@@ -199,6 +214,7 @@
 				633B63671EFC8150006223B4 /* DrawingEmojiTableViewCell.swift in Sources */,
 				63745E051EF42E8100D281A7 /* DrawingImageView.swift in Sources */,
 				63DCCAB31EEC9A73001CAF13 /* CameraViewController.swift in Sources */,
+				630039891F0811BD003E8A9C /* EmojiPaletteTableViewController.swift in Sources */,
 				63EAC49D1EF05DFC0084129B /* DrawingViewController.swift in Sources */,
 				63DCCAB11EEC9A73001CAF13 /* Scene.swift in Sources */,
 				63DCA26D1EF448CB00443BFF /* DrawingModel.swift in Sources */,
