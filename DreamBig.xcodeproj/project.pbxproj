@@ -13,6 +13,7 @@
 		633B63691EFC87F5006223B4 /* EmojiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633B63681EFC87F5006223B4 /* EmojiPalette.swift */; };
 		63745E051EF42E8100D281A7 /* DrawingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63745E041EF42E8100D281A7 /* DrawingImageView.swift */; };
 		639EE9F41EF430E50066190E /* CameraViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639EE9F31EF4307F0066190E /* CameraViewController.storyboard */; };
+		63B0B08E1F0878AB002E296E /* EmojiPalettePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B0B08D1F0878AB002E296E /* EmojiPalettePopover.swift */; };
 		63DCA26D1EF448CB00443BFF /* DrawingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DCA26C1EF448CB00443BFF /* DrawingModel.swift */; };
 		63DCCAAD1EEC9A73001CAF13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DCCAAC1EEC9A73001CAF13 /* AppDelegate.swift */; };
 		63DCCAAF1EEC9A73001CAF13 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 63DCCAAE1EEC9A73001CAF13 /* Scene.sks */; };
@@ -31,6 +32,7 @@
 		633B63681EFC87F5006223B4 /* EmojiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPalette.swift; sourceTree = "<group>"; };
 		63745E041EF42E8100D281A7 /* DrawingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingImageView.swift; sourceTree = "<group>"; };
 		639EE9F31EF4307F0066190E /* CameraViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraViewController.storyboard; sourceTree = "<group>"; };
+		63B0B08D1F0878AB002E296E /* EmojiPalettePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPalettePopover.swift; sourceTree = "<group>"; };
 		63DCA26C1EF448CB00443BFF /* DrawingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingModel.swift; sourceTree = "<group>"; };
 		63DCCAA91EEC9A73001CAF13 /* DreamBig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DreamBig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DCCAAC1EEC9A73001CAF13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				630039881F0811BD003E8A9C /* EmojiPaletteTableViewController.swift */,
 				633B63661EFC8150006223B4 /* DrawingEmojiTableViewCell.swift */,
 				633B63681EFC87F5006223B4 /* EmojiPalette.swift */,
+				63B0B08D1F0878AB002E296E /* EmojiPalettePopover.swift */,
 			);
 			path = EmojiPalette;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				633B63691EFC87F5006223B4 /* EmojiPalette.swift in Sources */,
 				633B63671EFC8150006223B4 /* DrawingEmojiTableViewCell.swift in Sources */,
+				63B0B08E1F0878AB002E296E /* EmojiPalettePopover.swift in Sources */,
 				63745E051EF42E8100D281A7 /* DrawingImageView.swift in Sources */,
 				63DCCAB31EEC9A73001CAF13 /* CameraViewController.swift in Sources */,
 				630039891F0811BD003E8A9C /* EmojiPaletteTableViewController.swift in Sources */,

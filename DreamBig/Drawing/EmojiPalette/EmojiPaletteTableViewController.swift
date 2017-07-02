@@ -8,11 +8,14 @@
 
 import UIKit
 
+protocol EmojiPaletteTableViewControllerDelegate: class {
+    func didSelectEmoji(emoji: String)
+}
+
 class EmojiPaletteTableViewController: UITableViewController {
 
-    static let storyboard = "EmojiPaletteTableViewController"
-
     let emojiPalette = EmojiPalette()
+    var delegate: EmojiPaletteTableViewControllerDelegate?
 
     @IBAction func didPressAddEmojiButton(_ sender: Any) {
         let alert = UIAlertController(title: "Add emoji", message: nil, preferredStyle: .alert)
@@ -60,6 +63,7 @@ extension EmojiPaletteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         emojiPalette.selectEmoji(index: indexPath.row)
         tableView.reloadData()
+        delegate?.didSelectEmoji(emoji: emojiPalette.getEmoji())
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

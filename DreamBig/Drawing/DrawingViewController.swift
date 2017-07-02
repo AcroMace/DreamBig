@@ -12,13 +12,16 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     let emojiBaseSize: CGFloat = 12 // Base font size for the emoji
     var drawingModel: DrawingModel? // Model passed to the AR view controller after drawing
-
-    // Emoji palette view controllers
-    var emojiPaletteContainer: UINavigationController?
-    var emojiPaletteViewController: EmojiPaletteTableViewController?
+    let emojiPalettePopover = EmojiPalettePopover()
 
     @IBOutlet weak var drawingImageView: DrawingImageView!
     @IBOutlet weak var emojiButton: UIBarButtonItem!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emojiButton.title = emojiPalettePopover.selectedEmoji
+        emojiPalettePopover.delegate = self
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -32,14 +35,16 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     func drewEmoji(at point: CGPoint, with size: CGFloat) {
         DispatchQueue.main.async { // Don't block on the touch update calls
-            let point = self.createDrawingPoint(at: point, with: size)
+            guard let point = self.createDrawingPoint(at: point, with: size) else {
+                return
+            }
             self.drawingModel?.addPoint(point: point)
             self.view.addSubview(self.convertDrawingPointToLabel(drawingPoint: point))
         }
     }
 
     @IBAction func didPressEmojisButton(_ sender: Any) {
-        guard let emojiPaletteContainer = getEmojiPaletteContainer() else {
+        guard let emojiPaletteContainer = emojiPalettePopover.viewController else {
             return
         }
         present(emojiPaletteContainer, animated: true, completion: nil)
@@ -47,15 +52,13 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
     }
 
     @IBAction func didPressDoneButton(_ sender: Any) {
-        // Trying to edit the "Main" storyboard currently crashes Xcode so the name can't be changed
-        // Just use a transition and consolidate the two UIViewControllers to a single storyboard when the next beta comes out
-        let mainStoryboard = UIStoryboard(name: "CameraViewController", bundle: Bundle(for: CameraViewController.self))
-        guard let mainViewController = mainStoryboard.instantiateInitialViewController() as? CameraViewController else {
-            print("Could not create the Main view controller")
+        let cameraStoryboard = UIStoryboard(name: CameraViewController.storyboard, bundle: Bundle(for: CameraViewController.self))
+        guard let cameraViewController = cameraStoryboard.instantiateInitialViewController() as? CameraViewController else {
+            print("ERROR: Could not create the CameraViewController")
             return
         }
-        mainViewController.drawingModel = drawingModel
-        navigationController?.pushViewController(mainViewController, animated: true)
+        cameraViewController.drawingModel = drawingModel
+        navigationController?.pushViewController(cameraViewController, animated: true)
     }
 
     @IBAction func didPressClearButton(_ sender: Any) {
@@ -69,8 +72,11 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
 
     // MARK: - Private methods
 
-    private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint {
-        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: getEmojiPaletteViewController()?.emojiPalette.getEmoji() ?? ":(")
+    private func createDrawingPoint(at point: CGPoint, with size: CGFloat) -> DrawingPoint? {
+        guard let emoji = emojiPalettePopover.selectedEmoji else {
+            return nil
+        }
+        return DrawingPoint(x: point.x, y: point.y, size: size, emoji: emoji)
     }
 
     private func convertDrawingPointToLabel(drawingPoint: DrawingPoint) -> UILabel {
@@ -89,26 +95,15 @@ class DrawingViewController: UIViewController, DrawingImageViewDelegate {
         return emoji
     }
 
-    private func getEmojiPaletteContainer() -> UINavigationController? {
-        if emojiPaletteContainer != nil {
-            return emojiPaletteContainer
-        }
+}
 
-        let navigationControllerStoryboard = UIStoryboard(
-            name: EmojiPaletteTableViewController.storyboard,
-            bundle: Bundle(for: EmojiPaletteTableViewController.self))
-        emojiPaletteContainer = navigationControllerStoryboard.instantiateInitialViewController() as? UINavigationController
-        emojiPaletteContainer?.modalPresentationStyle = .popover
-        return emojiPaletteContainer
-    }
+// MARK: - EmojiPalettePopoverDelegate
 
-    private func getEmojiPaletteViewController() -> EmojiPaletteTableViewController? {
-        if emojiPaletteViewController != nil {
-            return emojiPaletteViewController
-        }
+extension DrawingViewController: EmojiPalettePopoverDelegate {
 
-        emojiPaletteViewController = getEmojiPaletteContainer()?.topViewController as? EmojiPaletteTableViewController
-        return emojiPaletteViewController
+    func didSelectEmoji(emoji: String) {
+        emojiButton.title = emoji
+        dismiss(animated: true, completion: nil)
     }
 
 }

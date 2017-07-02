@@ -10,10 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Drawing View Controller-->
+        <!--Draw below-->
         <scene sceneID="p5r-ix-mBb">
             <objects>
                 <viewController id="kKR-Nk-NW1" customClass="DrawingViewController" customModule="DreamBig" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides/>
                     <view key="view" contentMode="scaleToFill" id="51M-VF-fUf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,13 +22,6 @@
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eki-xH-ZeR" customClass="DrawingImageView" customModule="DreamBig" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSP-ur-6da">
-                                <rect key="frame" x="322" y="617" width="37" height="30"/>
-                                <state key="normal" title="Done"/>
-                                <connections>
-                                    <action selector="didPressDoneButton:" destination="kKR-Nk-NW1" eventType="touchUpInside" id="bkY-oE-OBm"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whU-uS-5Nx">
                                 <rect key="frame" x="16" y="617" width="36" height="30"/>
                                 <state key="normal" title="Clear"/>
@@ -43,16 +37,19 @@
                             <constraint firstItem="whU-uS-5Nx" firstAttribute="leading" secondItem="51M-VF-fUf" secondAttribute="leadingMargin" id="QFS-CM-jT6"/>
                             <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="whU-uS-5Nx" secondAttribute="bottom" constant="20" id="YpQ-pg-kPd"/>
                             <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="Eki-xH-ZeR" secondAttribute="bottom" id="a6Q-YS-Tlp"/>
-                            <constraint firstItem="Pdd-Ko-anx" firstAttribute="bottom" secondItem="CSP-ur-6da" secondAttribute="bottom" constant="20" id="gAh-dE-hqV"/>
                             <constraint firstItem="Eki-xH-ZeR" firstAttribute="top" secondItem="Pdd-Ko-anx" secondAttribute="top" id="pnb-d9-Yzw"/>
-                            <constraint firstItem="CSP-ur-6da" firstAttribute="trailing" secondItem="51M-VF-fUf" secondAttribute="trailingMargin" id="wOE-uY-Lmw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pdd-Ko-anx"/>
                     </view>
-                    <navigationItem key="navigationItem" id="o5G-OW-BOy">
+                    <navigationItem key="navigationItem" title="Draw below" id="o5G-OW-BOy">
                         <barButtonItem key="leftBarButtonItem" title="Emojis" id="57V-Ol-oDE">
                             <connections>
                                 <action selector="didPressEmojisButton:" destination="kKR-Nk-NW1" id="bAX-jx-K72"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="5Qd-3S-XpW">
+                            <connections>
+                                <action selector="didPressDoneButton:" destination="kKR-Nk-NW1" id="48F-MO-vyx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

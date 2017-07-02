@@ -12,15 +12,18 @@ import ARKit
 
 class CameraViewController: UIViewController {
 
-    var scene: Scene?
+    static let storyboard = "CameraViewController"
+
     var drawingModel: DrawingModel?
-    var emojiSize: CGFloat = 32
+    private var scene: Scene?
+    private var emojiSize: CGFloat = 32
+
     @IBOutlet var sceneView: ARSKView!
 
-    var placeButton: UIBarButtonItem?
-    var emojiSizeTextView = UITextView()
-    var spawnDistanceTextView = UITextView()
-    var emojiSpacingScaleTextView = UITextView()
+    private var placeButton: UIBarButtonItem?
+    private var emojiSizeTextView = UITextView()
+    private var spawnDistanceTextView = UITextView()
+    private var emojiSpacingScaleTextView = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
