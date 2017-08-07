@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode9
+xcode_workspace: DreamBig.xcworkspace
+xcode_scheme: DreamBig 
+
+install:
+  - ./Scripts/install_swiftlint.sh
+
+script:
+  - set -o pipefail && xcodebuild -workspace DreamBig.xcworkspace -scheme DreamBig -destination 'platform=iOS Simulator,name=iPad Pro (12.9-inch)' | xcpretty
